@@ -25,8 +25,6 @@ public class LogInPage extends ParentPage{
         }catch (Exception e){
             logger.error("Can't open Login Page");
             Assert.fail("Can not open Login Page!");
-
-
         }
     }
 

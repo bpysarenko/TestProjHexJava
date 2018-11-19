@@ -17,7 +17,7 @@ public class ActionsWithOurElements {
         try{
             element.clear();
             element.sendKeys(text);
-            logger.info(text + "was input in element password");
+            logger.info(text + " was input in element password");
 
         } catch (Exception e){
             logger.error("Can't work with element" + e);
