@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.junit.Assert;
 
 public class LogInPage extends ParentPage{
     public LogInPage(WebDriver webDriver) {
@@ -16,5 +17,17 @@ public class LogInPage extends ParentPage{
 
     @FindBy (id = "input-password")
     WebElement passwordField;
+
+    public void openLoginPage(){
+        try{
+            webDriver.get("https://bghex.com.ua/login/");
+            logger.info("Login Page was opened");
+        }catch (Exception e){
+            logger.error("Can't open Login Page");
+            Assert.fail("Can not open Login Page!");
+
+
+        }
+    }
 
 }
