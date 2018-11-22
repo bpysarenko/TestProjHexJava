@@ -7,7 +7,7 @@ import org.junit.Assert;
 
 public class LogInPage extends ParentPage{
     public LogInPage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, "/login/");
     }
     @FindBy (xpath = ".//input[@class='btn btn-primary' and @value = 'Войти']")
     WebElement voitiButton;
@@ -44,6 +44,7 @@ public class LogInPage extends ParentPage{
         enterEmail(userProvideEmail);
         enterPassword(userProvidePassword);
         clickOnVoitiButton();
+        
     }
 
 
