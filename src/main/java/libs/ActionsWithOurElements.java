@@ -17,7 +17,7 @@ public class ActionsWithOurElements {
         try{
             element.clear();
             element.sendKeys(text);
-            logger.info(text + " was input in element password");
+            logger.info(text + " was input in element " + element);
 
         } catch (Exception e){
             logger.error("Can't work with element" + e);
@@ -34,6 +34,14 @@ public class ActionsWithOurElements {
             Assert.fail("Can't work with element" + e);
         }
 
+    }
+
+    public boolean isElementDisplayed(WebElement element){
+        try{
+            return  element.isDisplayed();
+        } catch (Exception e){
+            return  false;
+        }
     }
 
 
