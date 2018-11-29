@@ -9,6 +9,7 @@ public class LogInPage extends ParentPage{
     public LogInPage(WebDriver webDriver) {
         super(webDriver, "/login/");
     }
+
     @FindBy (xpath = ".//input[@class='btn btn-primary' and @value = 'Войти']")
     WebElement voitiButton;
 
@@ -17,6 +18,9 @@ public class LogInPage extends ParentPage{
 
     @FindBy (id = "input-password")
     WebElement passwordField;
+
+    @FindBy (xpath = ".//div[@class = 'alert alert-danger']")
+    WebElement accessDeniedAlert;
 
     public void openLoginPage(){
         try{
@@ -46,6 +50,11 @@ public class LogInPage extends ParentPage{
         clickOnVoitiButton();
         
     }
+
+    public boolean isAccessAlertPresent(){
+        return actionsWithOurElements.isElementDisplayed(accessDeniedAlert);
+    }
+
 
 
 }

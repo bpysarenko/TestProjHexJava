@@ -13,9 +13,15 @@ public class Login_to_site extends ParentTest {
 
         Assert.assertTrue("There is no Vyhod button, you are not logged in", myAccountPage.isVyhodButtonPresent());
         myAccountPage.checkUrl();
-
-
-
     }
+
+    @Test
+    public void inValidLogin(){
+        logInPage.loginInWithCredentials("9spysar@gmail.com", "WSXcde123$");
+
+        Assert.assertTrue("You have logged in with invalid credentials!", logInPage.isAccessAlertPresent());
+    }
+
+
 
 }
