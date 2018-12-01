@@ -43,10 +43,11 @@ public class AddNewGameToBookmark extends ParentTest {
 
 
     }
-//TODO Complete deleting section(metod is created, but empty)
-//    @After
-//    public void removeGameFromWishlist(){
-//        wishListPage.removeAddedGameFromWishlist(gameName);
-//
-//    }
+
+    @After
+    public void removeGameFromWishlist(){
+        selectedGamePage.clickAndGoToWishlistPage();
+        wishListPage.removeAddedGameFromWishlist(gameName);
+
+    }
 }

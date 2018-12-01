@@ -15,7 +15,14 @@ public class WishListPage extends ParentPage {
 
     }
 
-    public void removeAddedGameFromWishlist(String gameName) { //TODO complete it!!!
+    private WebElement getCertainRowWithProvidedGameName(String gameName){
+        return webDriver.findElement(By.xpath(".//tr[.//td[2]//a[contains(text(),'" + gameName + "')]]//td[6]//a[@class='btn btn-danger']"));
+    }
 
+    public void removeAddedGameFromWishlist(String gameName) {
+        actionsWithOurElements.clickOnElement(getCertainRowWithProvidedGameName(gameName));
+
+
+//        .//tr[.//td[2]//a[contains(text()='Ghost Stories')]]//td[6]//a[@class='btn btn-danger'] - Locator for removal
     }
 }

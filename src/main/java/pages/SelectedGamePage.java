@@ -8,12 +8,21 @@ public class SelectedGamePage extends ParentPage {
     public SelectedGamePage(WebDriver webDriver) {
         super(webDriver, "desktops/");
     }
+
     @FindBy (xpath = ".//button[@class='btn btn-default' and @data-original-title='В закладки']")
-    WebElement buttonAddToBppkmark;
+    WebElement buttonAddToBookmark;
+
+    @FindBy (xpath = ".//a[@id='wishlist-total']/span")
+    WebElement buttonOnMainPannelGoToWishlist;
 
 
 
     public void addGameToBookmarks() {
-        actionsWithOurElements.clickOnElement(buttonAddToBppkmark);
+        actionsWithOurElements.clickOnElement(buttonAddToBookmark);
+    }
+
+    public void clickAndGoToWishlistPage() {
+        actionsWithOurElements.clickOnElement(buttonOnMainPannelGoToWishlist);
+
     }
 }
