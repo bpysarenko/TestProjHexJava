@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.MyAccountPage;
+import pages.SearchPage;
+import pages.SelectedGamePage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -14,6 +16,8 @@ public class ParentTest {
     WebDriver webDriver;
     protected LogInPage logInPage;
     protected MyAccountPage myAccountPage;
+    protected SearchPage searchPage;
+    protected SelectedGamePage selectedGamePage;
 
     @Before
     public void setUp() {
@@ -24,6 +28,8 @@ public class ParentTest {
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         logInPage = new LogInPage(webDriver);
         myAccountPage = new MyAccountPage(webDriver);
+        searchPage = new SearchPage(webDriver);
+        selectedGamePage = new SelectedGamePage(webDriver);
     }
 
     @After
