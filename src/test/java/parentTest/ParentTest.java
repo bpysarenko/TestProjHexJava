@@ -1,5 +1,6 @@
 package parentTest;
 
+import org.junit.Assert;
 import pages.*;
 import org.junit.After;
 import org.junit.Before;
@@ -34,6 +35,14 @@ public class ParentTest {
     @After
     public void tearDown(){
         webDriver.quit();
+    }
+
+    public void checkExpectedResult(String messageIfNotGood, boolean actualResult, boolean expectedResult){
+        Assert.assertEquals(messageIfNotGood, expectedResult, actualResult);
+    }
+
+    public void checkExpectedResult (String messageIfNotGood, boolean actualResult){
+        checkExpectedResult(messageIfNotGood,actualResult,true);
     }
 
 
