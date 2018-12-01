@@ -1,13 +1,10 @@
 package parentTest;
 
-import pages.LogInPage;
+import pages.*;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.MyAccountPage;
-import pages.SearchPage;
-import pages.SelectedGamePage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +15,7 @@ public class ParentTest {
     protected MyAccountPage myAccountPage;
     protected SearchPage searchPage;
     protected SelectedGamePage selectedGamePage;
+    protected WishListPage wishListPage;
 
     @Before
     public void setUp() {
@@ -30,6 +28,7 @@ public class ParentTest {
         myAccountPage = new MyAccountPage(webDriver);
         searchPage = new SearchPage(webDriver);
         selectedGamePage = new SelectedGamePage(webDriver);
+        wishListPage = new WishListPage(webDriver);
     }
 
     @After

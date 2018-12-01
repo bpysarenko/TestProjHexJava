@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,12 @@ public class SearchPage extends  ParentPage{
 
 
     public void clickOnGameTile(String gameName) {
-        WebElement neededGameName = webDriver.findElement(By.xpath(".//a[contains(text(),'" + gameName + "')]"));
-        actionsWithOurElements.clickOnElement(neededGameName);
+        try {
+            WebElement neededGameName = webDriver.findElement(By.xpath(".//a[contains(text(),'" + gameName + "')]"));
+            actionsWithOurElements.clickOnElement(neededGameName);
+        } catch (Exception e) {
+            logger.error("Such game can't be found, check name!");
+            Assert.fail("Such game can't be found, check name!");
+        }
     }
 }

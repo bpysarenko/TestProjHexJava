@@ -1,5 +1,7 @@
 package addNewBookmark;
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -36,7 +38,15 @@ public class AddNewGameToBookmark extends ParentTest {
         searchPage.clickOnGameTile(gameName);
         selectedGamePage.addGameToBookmarks();
 
+        Assert.assertEquals("Game wasn't addded to Bookmarks",true, wishListPage.isGameDispalyedInAddedToWhishlist(gameName));
+
 
 
     }
+//TODO Complete deleting section(metod is created, but empty)
+//    @After
+//    public void removeGameFromWishlist(){
+//        wishListPage.removeAddedGameFromWishlist(gameName);
+//
+//    }
 }
