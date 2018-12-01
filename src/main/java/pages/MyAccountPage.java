@@ -10,7 +10,11 @@ public class MyAccountPage extends ParentPage {
     @FindBy (xpath =".//a[@class='list-group-item' and @href='https://bghex.com.ua/logout/']" )
     WebElement vyhodButton;
 
+    @FindBy (xpath = ".//input[@class='form-control input-lg' and @type='text']")
+    WebElement searchInputField;
 
+    @FindBy (xpath = ".//button[@class='btn btn-default btn-lg' and @type='button']")
+    WebElement searchButton;
 
 
     public MyAccountPage(WebDriver webDriver) {
@@ -25,5 +29,13 @@ public class MyAccountPage extends ParentPage {
 //            return false;
 //        }
         return actionsWithOurElements.isElementDisplayed(vyhodButton);
+    }
+
+    public void searchForGame(String gameName) {
+        actionsWithOurElements.enterTextIntoElement(searchInputField,gameName);
+    }
+
+    public void clickOnSearch() {
+        actionsWithOurElements.clickOnElement(searchButton);
     }
 }
