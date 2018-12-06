@@ -5,3 +5,5 @@ Here should be 5 test cases like:
 4. dobavit tovar v korzinu
 5. Dobavit tovar v sravnenie i posmptret sravnenie
 +++
+
+.//ul/li/div//p//a[@href = 'http://bghex.com.ua/index.php?route=checkout/buy'] - locator for checking is there anything in Korzina
