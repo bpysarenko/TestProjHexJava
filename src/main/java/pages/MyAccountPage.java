@@ -31,6 +31,9 @@ public class MyAccountPage extends ParentPage {
     @FindBy (xpath = ".//div//table[@class = 'table table-bordered']")
     WebElement itogovayaStoimostTableIfGamesInKorzina;
 
+    @FindBy(xpath = ".//nav[@id='menu']//a[@href='http://bghex.com.ua/klub-geks.html']")
+    private WebElement clubPageButtonOnMainPanel;
+
 
     public MyAccountPage(WebDriver webDriver) {
         super(webDriver, "/my-account/");
@@ -114,5 +117,8 @@ public class MyAccountPage extends ParentPage {
 
         }
 
+    public void goToBlogPage() {
+        actionsWithOurElements.clickOnElement(clubPageButtonOnMainPanel);
     }
+}
 
