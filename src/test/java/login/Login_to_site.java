@@ -15,13 +15,5 @@ public class Login_to_site extends ParentTest {
         myAccountPage.checkUrl();
     }
 
-    @Test
-    public void inValidLogin(){
-        logInPage.loginInWithCredentials("9spysar@gmail.com", "WSXcde123$");
-
-        Assert.assertTrue("You have logged in with invalid credentials!", logInPage.isAccessAlertPresent());
-    }
-
-
 
 }
