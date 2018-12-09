@@ -18,6 +18,10 @@ public class SearchPage extends  ParentPage{
     @FindBy (xpath = ".//ul/li/div//p//a[@href = 'http://bghex.com.ua/index.php?route=checkout/buy']")
     WebElement goToKorzinaIndicatorOfGamesInKorzina;
 
+    @FindBy (xpath = ".//div[@id='top-links']//a[@href = 'http://bghex.com.ua/index.php?route=checkout/buy']")
+    WebElement openKorzinaPageFromMainPanelButton;
+
+
 
 
 
@@ -36,8 +40,7 @@ public class SearchPage extends  ParentPage{
         WebElement addGameToKorzinaOnTileButton = webDriver.findElement(By.xpath(".//div[@class='product-thumb'][.//div[@class ='caption']//a[contains(text(),'" + gameName + "')]]/div/button[1]/span"));
         try {
             actionsWithOurElements.clickOnElement(addGameToKorzinaOnTileButton);
-
-
+            Thread.sleep(2000);
         } catch (Exception e){
             logger.error("Tile with searched game wasn't found correctly");
             Assert.fail("Tile with searched game wasn't found correctly");
@@ -61,8 +64,41 @@ public class SearchPage extends  ParentPage{
     }
 
     public boolean isGameAddedToKorzinaDD(String gameName){
-        WebElement addedGameNameTitleInTable = webDriver.findElement(By.xpath(".//table[@class='table table-striped']//a[contains(text(), '" + gameName +"')]"));
-        return actionsWithOurElements.isElementDisplayed(addedGameNameTitleInTable);
+        actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
+        try {
+            Thread.sleep(2000);
 
+            WebElement addedGameNameTitleInTable = webDriver.findElement(By.xpath(".//table[@class='table table-striped']//a[contains(text(), '" + gameName + "')]"));
+
+            return actionsWithOurElements.isElementDisplayed(addedGameNameTitleInTable);
+
+        } catch (Exception e){
+            logger.info("Certain Game can't be found in Korzina!");
+            return  false;
+        }
+
+    }
+
+    public void clickOnGoToKorzinaPageButtonOnMainPanel(){
+        actionsWithOurElements.clickOnElement(openKorzinaPageFromMainPanelButton);
+    }
+
+    public void makingSureThatGameIsNotInKorzinaAlready(String gameName){
+        actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
+
+        try{
+//    NOT NEEDED!                WebElement checkedGameNameInKorzinaTableDD = webDriver.findElement(By.xpath(".//li/table[@class='table table-striped']//a[contains(text(),'" + gameName + "')]"));
+            WebElement removeButtonForSearchedGameInKorzinaDD = webDriver.findElement(By.xpath(".//li/table[@class='table table-striped']//tr[.//a[contains(text(),'" + gameName + "')]]//button[@class= 'btn btn-danger btn-xs']"));
+            actionsWithOurElements.clickOnElement(removeButtonForSearchedGameInKorzinaDD);
+            logger.info("Certain game was removed from Korzina List!");
+        } catch (Exception e){
+            logger.info("There is no such game in List!");
+            actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
+        }
+
+    }
+
+    public void clickOnKorzinaCartForOpenAndClose(){
+        actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
     }
 }

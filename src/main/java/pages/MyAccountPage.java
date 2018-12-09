@@ -28,6 +28,9 @@ public class MyAccountPage extends ParentPage {
     @FindBy (xpath = ".//li/table[@class='table table-striped']")
     List<WebElement> listOfGamesInKorzinaDropdown;
 
+    @FindBy (xpath = ".//div//table[@class = 'table table-bordered']")
+    WebElement itogovayaStoimostTableIfGamesInKorzina;
+
 
     public MyAccountPage(WebDriver webDriver) {
         super(webDriver, "/my-account/");
@@ -51,19 +54,22 @@ public class MyAccountPage extends ParentPage {
         actionsWithOurElements.clickOnElement(searchButton);
     }
 
-    public void checkAndEmptyKorzina(String gameName) {
+    @Deprecated
+    public void checkAndEmptyKorzina() {
         actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
         if (actionsWithOurElements.isElementDisplayed(goToKorzinaIndicatorOfGamesInKorzina)){
             int counter = 0;
-            while (goToKorzinaIndicatorOfGamesInKorzina.isDisplayed()){
-                for (WebElement record : listOfGamesInKorzinaDropdown){
-                    WebElement cellWithGameNameInKorzinaDD = record.findElement(By.xpath("//td[@class='text-left']/a"));
-                    WebElement discardGameFromKorzinaDDButton = record.findElement(By.xpath("//button[@class='btn btn-danger btn-xs']"));
+            while (itogovayaStoimostTableIfGamesInKorzina.isDisplayed()) {
+//                for (WebElement record : listOfGamesInKorzinaDropdown) {
+//                    WebElement cellWithGameNameInKorzinaDD = record.findElement(By.xpath("//td[@class='text-left']/a"));
+                WebElement discardGameFromKorzinaDDButton = webDriver.findElement(By.xpath(".//li/table[@class='table table-striped']//tr[1]//button[@class='btn btn-danger btn-xs']"));
+//                    WebElement discardGameFromKorzinaDDButton = record.findElement(By.xpath("//button[@class='btn btn-danger btn-xs']"));
 //                    if (cellWithGameNameInKorzinaDD.getText().equals(gameName)){
-                        actionsWithOurElements.clickOnElement(discardGameFromKorzinaDDButton);
+                    actionsWithOurElements.clickOnElement(discardGameFromKorzinaDDButton);
 //                    }
-                }
+//                }
                 counter++;
+            }
                 if(counter > 10){
                     Assert.fail("Something went wrong, Games still are in Korzina DD!");
                 }
@@ -73,5 +79,40 @@ public class MyAccountPage extends ParentPage {
 
         }
 
+        public boolean isCertainGameDisplayedInKorzinaDD(String gameName){
+        try {
+            WebElement checkedGameNameInKorzinaTableDD = webDriver.findElement(By.xpath(".//li/table[@class='table table-striped']//a[contains(text(),'" + gameName + "')]"));
+            return (itogovayaStoimostTableIfGamesInKorzina.isDisplayed() && checkedGameNameInKorzinaTableDD.isDisplayed());
+        } catch (Exception e){
+            logger.info("There is no such game in The list!");
+            return false;
+        }
+        }
+
+        public void makingSureThatGameIsNotInKorzinaAlready(String gameName){
+            actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
+
+//            if( itogovayaStoimostTableIfGamesInKorzina.isDisplayed()){
+                try{
+//    NOT NEEDED!                WebElement checkedGameNameInKorzinaTableDD = webDriver.findElement(By.xpath(".//li/table[@class='table table-striped']//a[contains(text(),'" + gameName + "')]"));
+                    WebElement removeButtonForSearchedGameInKorzinaDD = webDriver.findElement(By.xpath(".//li/table[@class='table table-striped']//tr[.//a[contains(text(),'" + gameName + "')]]//button[@class= 'btn btn-danger btn-xs']"));
+                    actionsWithOurElements.clickOnElement(removeButtonForSearchedGameInKorzinaDD);
+                    logger.info("Certain game was removed from Korzina List!");
+                } catch (Exception e){
+                    logger.info("There is no such game in List!");
+                    actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
+                }
+//            }
+//            else {
+//                actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
+//            }
+
+            if (isCertainGameDisplayedInKorzinaDD(gameName) == true){
+                Assert.fail("Searched game still can be found in Korzina, even after attempt to remove it!");
+                logger.error("Searched game still can be found in Korzina, even after attempt to remove it!");
+            }
+
+        }
+
     }
-}
+
