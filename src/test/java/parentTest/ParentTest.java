@@ -17,6 +17,7 @@ public class ParentTest {
     protected SearchPage searchPage;
     protected SelectedGamePage selectedGamePage;
     protected WishListPage wishListPage;
+    protected KorzinaPage korzinaPage;
 
     @Before
     public void setUp() {
@@ -30,6 +31,7 @@ public class ParentTest {
         searchPage = new SearchPage(webDriver);
         selectedGamePage = new SelectedGamePage(webDriver);
         wishListPage = new WishListPage(webDriver);
+        korzinaPage = new KorzinaPage(webDriver);
     }
 
     @After
