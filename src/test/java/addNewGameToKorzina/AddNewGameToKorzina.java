@@ -2,11 +2,31 @@ package addNewGameToKorzina;
 
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import parentTest.ParentTest;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
 
 public class AddNewGameToKorzina extends ParentTest {
 
-    String gameName = "Пандемия";
+    String gameName;
+
+    public AddNewGameToKorzina(String gameName) {
+        this.gameName = gameName;
+    }
+
+
+    @Parameterized.Parameters (name = "Parameters are {0}")
+    public static Collection testData() {
+        return Arrays.asList(new Object[][]{
+                {"Пандемия"},
+                {"Crossfire"},
+        });
+    }
 
     @Test
     public void addGameToKorzina() {
