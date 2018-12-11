@@ -3,7 +3,7 @@ Here should be 5 test cases like:
 2. log in with incorrect credentials;
 3. Add tovar v zakladki
 4. dobavit tovar v korzinu
-5. Dobavit tovar v sravnenie i posmptret sravnenie
+5. Izmenit yazyk na luboy stranitse
 +++
 
 .//ul/li/div//p//a[@href = 'http://bghex.com.ua/index.php?route=checkout/buy'] - locator for checking is there anything in Korzina
