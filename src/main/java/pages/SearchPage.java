@@ -40,7 +40,7 @@ public class SearchPage extends  ParentPage{
         WebElement addGameToKorzinaOnTileButton = webDriver.findElement(By.xpath(".//div[@class='product-thumb'][.//div[@class ='caption']//a[contains(text(),'" + gameName + "')]]/div/button[1]/span"));
         try {
             actionsWithOurElements.clickOnElement(addGameToKorzinaOnTileButton);
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
         } catch (Exception e){
             logger.error("Tile with searched game wasn't found correctly");
             Assert.fail("Tile with searched game wasn't found correctly");
@@ -66,7 +66,7 @@ public class SearchPage extends  ParentPage{
     public boolean isGameAddedToKorzinaDD(String gameName){
         actionsWithOurElements.clickOnElement(korzinaShowDropdownElement);
         try {
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
 
             WebElement addedGameNameTitleInTable = webDriver.findElement(By.xpath(".//table[@class='table table-striped']//a[contains(text(), '" + gameName + "')]"));
 
